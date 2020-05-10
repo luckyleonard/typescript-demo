@@ -1,0 +1,21 @@
+{
+  "name": "typescript-demo",
+  "version": "1.0.0",
+  "description": "typescript practice",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node ./src/crowller.ts"
+  },
+  "author": "Leonard",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.18",
+    "@types/superagent": "^4.1.7",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "superagent": "^5.2.2"
+  }
+}
