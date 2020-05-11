@@ -1,68 +1,36 @@
 import superagent from 'superagent';
-import cheerio from 'cheerio';
 import fs from 'fs';
 import path from 'path';
+import NewsAnalyzer from './newsAnalyzer';
 
-interface News {
-  title: string;
-  website: string;
-}
-
-interface NewsStore {
-  time: number;
-  data: News[];
-}
-
-interface FileContent {
-  [propName: number]: News[];
+export interface Analyzer {
+  analyze: (html: string, filePath: string) => string;
 }
 
 class Crowller {
-  private url = `https://news.ycombinator.com/`;
-
-  getJsonInfo(html: string) {
-    const $ = cheerio.load(html);
-    const newsItems = $('.athing');
-    const newsInfos: News[] = [];
-
-    newsItems.map((index, newsItem) => {
-      const title = $(newsItem).find('.storylink').text();
-      const website = $(newsItem).find('.sitestr').text();
-      newsInfos.push({ title, website });
-    });
-
-    return {
-      time: new Date().getTime(),
-      data: newsInfos,
-    };
-  }
-
-  generateJsonContent(newsInfo: NewsStore) {
-    const filePath = path.resolve(__dirname, '../data/news.json');
-    let fileContent: FileContent = {};
-    if (fs.existsSync(filePath)) {
-      fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    }
-    fileContent[newsInfo.time] = newsInfo.data;
-    return fileContent;
-  }
+  private filePath = path.resolve(__dirname, '../data/news.json');
+  //抽离私有file path
 
   async getRawHtml() {
-    const result = await superagent.get(this.url);
+    const result = await superagent.get(this.url); //获取原始html
     return result.text;
   }
 
-  async runSpider() {
-    const filePath = path.resolve(__dirname, '../data/news.json');
-    const html = await this.getRawHtml();
-    const newsInfo = this.getJsonInfo(html);
-    const fileContent = this.generateJsonContent(newsInfo);
-    fs.writeFileSync(filePath, JSON.stringify(fileContent));
+  writeFile(content: string) {
+    fs.writeFileSync(this.filePath, content);
   }
 
-  constructor() {
+  async runSpider() {
+    const html = await this.getRawHtml();
+    const fileContent = this.analyzer.analyze(html, this.filePath);
+    this.writeFile(fileContent);
+  }
+
+  constructor(private url: string, private analyzer: Analyzer) {
     this.runSpider();
   }
 }
+const url = `https://news.ycombinator.com/`;
 
-const crowller = new Crowller();
+const analyzer = new NewsAnalyzer();
+new Crowller(url, analyzer);
