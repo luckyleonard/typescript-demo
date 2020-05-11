@@ -17,6 +17,17 @@ interface FileContent {
 }
 
 export default class NewsAnalyzer implements Analyzer {
+  private static instance: NewsAnalyzer;
+
+  static getInstance() {
+    if (!NewsAnalyzer.instance) {
+      NewsAnalyzer.instance = new NewsAnalyzer();
+    }
+    return NewsAnalyzer.instance;
+  }
+
+  private constructor() {}
+
   private getJsonInfo(html: string) {
     const $ = cheerio.load(html);
 

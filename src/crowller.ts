@@ -11,16 +11,16 @@ class Crowller {
   private filePath = path.resolve(__dirname, '../data/news.json');
   //抽离私有file path
 
-  async getRawHtml() {
+  private async getRawHtml() {
     const result = await superagent.get(this.url); //获取原始html
     return result.text;
   }
 
-  writeFile(content: string) {
+  private writeFile(content: string) {
     fs.writeFileSync(this.filePath, content);
   }
 
-  async runSpider() {
+  private async runSpider() {
     const html = await this.getRawHtml();
     const fileContent = this.analyzer.analyze(html, this.filePath);
     this.writeFile(fileContent);
@@ -32,5 +32,5 @@ class Crowller {
 }
 const url = `https://news.ycombinator.com/`;
 
-const analyzer = new NewsAnalyzer();
+const analyzer = NewsAnalyzer.getInstance();
 new Crowller(url, analyzer);
