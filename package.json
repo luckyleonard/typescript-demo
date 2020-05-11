@@ -4,13 +4,25 @@
   "description": "typescript practice",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node ./src/crowller.ts"
+    "tsnode": "ts-node ./src/crowller.ts",
+    "dev:build": "tsc -w",
+    "dev:start": "nodemon ./build/crowller.js",
+    "dev": "concurrently npm:dev:*"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*",
+      "data/*"
+    ]
   },
   "author": "Leonard",
   "license": "ISC",
   "devDependencies": {
     "@types/cheerio": "^0.22.18",
     "@types/superagent": "^4.1.7",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
