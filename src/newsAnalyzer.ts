@@ -4,7 +4,7 @@ import { Analyzer } from './crowller';
 
 interface News {
   title: string;
-  website: string;
+  point: number;
 }
 
 interface NewsData {
@@ -32,13 +32,14 @@ export default class NewsAnalyzer implements Analyzer {
     const $ = cheerio.load(html);
 
     const newsItems = $('.athing');
+    const newsPoint = $('.score');
     const newsInfos: News[] = []; //存储爬取出的News列表
 
     newsItems.each((index, newsItem) => {
       //cheerio的自带方法，格式必须按照规定写
       const title = $(newsItem).find('.storylink').text();
-      const website = $(newsItem).find('.sitestr').text();
-      newsInfos.push({ title, website });
+      const point = parseInt($(newsPoint).eq(index).text().split(' ', 1)[0]);
+      newsInfos.push({ title, point });
     });
 
     return {

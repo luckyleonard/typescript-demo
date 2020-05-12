@@ -1,204 +1,85 @@
 {
-  "1589197719454": [
+  "1589295301509": [
     {
-      "title": "Ray Tracing Essentials Part 7: Denoising for Ray Tracing",
-      "website": "nvidia.com"
+      "title": "Iyashikei: Japan’s Genre of “Healing Games” (2018)",
+      "point": 101
     },
-    { "title": "Make LLVM Fast Again", "website": "nikic.github.io" },
+    { "title": "Safeboot: Booting Linux Safely", "point": 34 },
+    { "title": "Show HN: Writing for Software Developers", "point": 70 },
+    { "title": "A 2020 Vision of Linear Algebra", "point": 544 },
     {
-      "title": "Create Diagrams in VS Code with Draw.io",
-      "website": "github.com"
+      "title": "Most detailed ever photograph of The Night Watch goes online",
+      "point": 206
     },
+    { "title": "Dithering and Open versus Free", "point": 27 },
     {
-      "title": "In Further Praise of Dependent Types",
-      "website": "utexas.edu"
-    },
-    {
-      "title": "MS Flight Simulator 2020 vs. Real life",
-      "website": "imgur.com"
-    },
-    {
-      "title": "Advanced SQL and database books and resources",
-      "website": "neilwithdata.com"
-    },
-    { "title": "Second-Guessing the Modern Web", "website": "macwright.org" },
-    { "title": "Microsoft Surface Go 2 review", "website": "techcrunch.com" },
-    { "title": "Comfortable with Uncomfortable", "website": "coreygarvey.com" },
-    {
-      "title": "Penrose: Create diagrams by typing mathematical notation in plain text",
-      "website": "github.com"
+      "title": "Street View camera rigs do much more than just take photos",
+      "point": 91
     },
     {
-      "title": "My Mid-Career Job-Hunt: A Data Point for Job-Seeking Devs",
-      "website": "philosophicalhacker.com"
+      "title": "Faster and more flexible pipelines with a Directed Acyclic Graph",
+      "point": 28
     },
     {
-      "title": "Results: Finland’s Basic Income Experiment Help Us Build the Post-Pandemic World",
-      "website": "demoshelsinki.fi"
+      "title": "Using an iPad as the main display for a Mac Mini",
+      "point": 104
     },
     {
-      "title": "Rawdrawandroid: Build Android apps in C",
-      "website": "github.com"
+      "title": "Less is exponentially more – The philosophy behind Go (2012)",
+      "point": 24
     },
-    { "title": "Being Slow to Criticise", "website": "solipsys.co.uk" },
+    { "title": "Self-Driving Cars with ROS and Autoware", "point": 40 },
+    { "title": "Ginger milk curd (2014)", "point": 9 },
     {
-      "title": "Learn Istio: A Service Mesh and Istio Resource List",
-      "website": "github.com"
-    },
-    {
-      "title": "Show HN: Margin – A lightweight, flexible markup language for structured thought",
-      "website": "margin.love"
-    },
-    { "title": "Pi-hole 5.0", "website": "pi-hole.net" },
-    { "title": "GitHub Stores Deleted Credit Cards", "website": "medium.com" },
-    {
-      "title": "My robotic basketball hoop won't let you miss [video]",
-      "website": "youtube.com"
+      "title": "Remote work worsens inequality by mostly helping high-income earners",
+      "point": 33
     },
     {
-      "title": "An engineered PET depolymerase to break down and recycle plastic bottles",
-      "website": "nature.com"
+      "title": "Confessions of Marcus Hutchins, the hacker who stopped the WannaCry attack",
+      "point": 129
     },
     {
-      "title": "Rust concurrency: the single-writer principle",
-      "website": "medium.com"
+      "title": "Interview with the Creator of Max/MSP and Pure Data",
+      "point": 42
     },
     {
-      "title": "German man living at Delhi airport since March 18",
-      "website": "hindustantimes.com"
+      "title": "Ask HN: Mind bending books to read and never be the same as before?",
+      "point": 315
     },
     {
-      "title": "Show HN: Create high resolution GIFs from YouTube",
-      "website": "gifrun.com"
+      "title": "Understand the Fundamentals of the K-Nearest Neighbors (KNN) Algorithm",
+      "point": 15
     },
     {
-      "title": "Your mobile data sold, without your knowledge",
-      "website": "googleusercontent.com"
+      "title": "Facebook is helping to set up a new pro-tech advocacy group to battle Washington",
+      "point": 33
+    },
+    { "title": "Improved vacuum in PostgreSQL 13", "point": 134 },
+    { "title": "CockroachDB 20.1", "point": 59 },
+    {
+      "title": "Thank you for helping us increase our bandwidth",
+      "point": 596
+    },
+    { "title": "Proxmox VE 6.2", "point": 70 },
+    { "title": "Lidl to Launch Rival to AWS", "point": 362 },
+    {
+      "title": "Ask HN: I've been promoted to Architect. What do I need to learn/do to excel?",
+      "point": 239
     },
     {
-      "title": "Touching the asteroid Ryugu revealed secrets of its surface and changing orbit",
-      "website": "phys.org"
+      "title": "Show HN: Little Ball of Fur – A NetworkX extension library for graph sampling",
+      "point": 11
     },
     {
-      "title": "Scunthorpe Sans – a self-censoring font",
-      "website": "vole.wtf"
+      "title": "Show HN: Solid, a free and MIT licensed design system / UI kit for Bootstrap 4",
+      "point": 68
     },
+    { "title": "Survey of Prescient Actions", "point": 14 },
     {
-      "title": "What are the best powers to play in Diplomacy?",
-      "website": "diplom.org"
+      "title": "Not quite a car, not quite a motorcycle: a vehicle built for one",
+      "point": 77
     },
-    {
-      "title": "My blog is now generated by Google Docs",
-      "website": "benwiser.com"
-    },
-    { "title": "Racket is 25", "website": "racket-lang.org" },
-    {
-      "title": "“Toggle-plexing” Sprites on the Commodore 64 (2019)",
-      "website": "kodiak64.com"
-    }
-  ],
-  "1589203061665": [
-    {
-      "title": "Deep Learning for Guitar Effect Emulation",
-      "website": "teddykoker.com"
-    },
-    {
-      "title": "Encouraging a Culture of Written Communication",
-      "website": "mcls.io"
-    },
-    {
-      "title": "Ray Tracing Essentials Part 7: Denoising for Ray Tracing",
-      "website": "nvidia.com"
-    },
-    { "title": "Make LLVM Fast Again", "website": "nikic.github.io" },
-    {
-      "title": "Create Diagrams in VS Code with Draw.io",
-      "website": "github.com"
-    },
-    {
-      "title": "Show HN: Using 16 Web3.0 Auth Projects with Decentralized, MongoDB-Like Database",
-      "website": "github.com"
-    },
-    {
-      "title": "U.S. Senators Advocate H-1B Freeze for 60 Days or Longer",
-      "website": "dice.com"
-    },
-    {
-      "title": "Advanced SQL and database books and resources",
-      "website": "neilwithdata.com"
-    },
-    { "title": "Second-Guessing the Modern Web", "website": "macwright.org" },
-    { "title": "Comfortable with Uncomfortable", "website": "coreygarvey.com" },
-    { "title": "Microsoft Surface Go 2 review", "website": "techcrunch.com" },
-    {
-      "title": "My Mid-Career Job-Hunt: A Data Point for Job-Seeking Devs",
-      "website": "philosophicalhacker.com"
-    },
-    {
-      "title": "If you overlay all atomic spectra, you get a Planck distribution",
-      "website": "wiley.com"
-    },
-    {
-      "title": "In Further Praise of Dependent Types",
-      "website": "utexas.edu"
-    },
-    { "title": "Being Slow to Criticise", "website": "solipsys.co.uk" },
-    {
-      "title": "Learn Istio: A Service Mesh and Istio Resource List",
-      "website": "github.com"
-    },
-    {
-      "title": "MS Flight Simulator 2020 vs. Real life",
-      "website": "imgur.com"
-    },
-    {
-      "title": "Show HN: Create high resolution GIFs from YouTube",
-      "website": "gifrun.com"
-    },
-    {
-      "title": "My robotic basketball hoop won't let you miss [video]",
-      "website": "youtube.com"
-    },
-    {
-      "title": "When Lightning Strikes Thrice: Breaking Thunderbolt 3 Security",
-      "website": "thunderspy.io"
-    },
-    {
-      "title": "First stable release of Ubuntu Unity 20.04",
-      "website": "twitter.com"
-    },
-    {
-      "title": "Rust concurrency: the single-writer principle",
-      "website": "medium.com"
-    },
-    {
-      "title": "Your mobile data sold, without your knowledge",
-      "website": "googleusercontent.com"
-    },
-    {
-      "title": "German man living at Delhi airport since March 18",
-      "website": "hindustantimes.com"
-    },
-    {
-      "title": "Penrose: Create diagrams by typing mathematical notation in plain text",
-      "website": "github.com"
-    },
-    {
-      "title": "Scunthorpe Sans – a self-censoring font",
-      "website": "vole.wtf"
-    },
-    {
-      "title": "My blog is now generated by Google Docs",
-      "website": "benwiser.com"
-    },
-    {
-      "title": "Lazy Lantern (YC S19) Is Hiring a Senior Data Scientist",
-      "website": "angel.co"
-    },
-    { "title": "Racket is 25", "website": "racket-lang.org" },
-    {
-      "title": "Rawdrawandroid: Build Android apps in C",
-      "website": "github.com"
-    }
+    { "title": "Comparing Ember Octane and React", "point": 34 },
+    { "title": "UNIX Text Formatting Using the -ms Macros (1984)", "point": 44 }
   ]
 }
