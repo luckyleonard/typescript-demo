@@ -40,3 +40,8 @@ function addSecond(first: object | NumberObj, second: object | NumberObj) {
   }
   return 0;
 }
+
+function join<T, P>(first: T, second: P): T {
+  return first;
+}
+join<number, string>(1, '1');
