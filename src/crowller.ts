@@ -1,13 +1,12 @@
 import superagent from 'superagent';
 import fs from 'fs';
 import path from 'path';
-import NewsAnalyzer from './newsAnalyzer';
 
 export interface Analyzer {
   analyze: (html: string, filePath: string) => string;
 }
 
-class Crowller {
+export default class Crowller {
   private filePath = path.resolve(__dirname, '../data/news.json');
   //抽离私有file path
 
@@ -30,7 +29,3 @@ class Crowller {
     this.runSpider();
   }
 }
-const url = `https://news.ycombinator.com/`;
-
-const analyzer = NewsAnalyzer.getInstance();
-new Crowller(url, analyzer);
