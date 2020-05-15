@@ -7,7 +7,7 @@ export interface Analyzer {
 }
 
 export default class Crowller {
-  private filePath = path.resolve(__dirname, '../data/news.json');
+  private filePath = path.resolve(__dirname, '../../data/news.json');
   //抽离私有file path
 
   private async getRawHtml() {
