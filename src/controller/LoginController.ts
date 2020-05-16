@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { Request, Response, NextFunction } from 'express';
-import { controller, get, post } from './decorator';
+import { Request, Response } from 'express';
+import { controller, get, post } from '../decorator';
 import { getResponseData } from '../utils/util';
 
 interface RequestWithBody extends Request {
@@ -9,11 +9,11 @@ interface RequestWithBody extends Request {
   };
 }
 
-@controller
+@controller('/')
 class LoginController {
   @get('/')
-  home(req: Request, res: Response) {
-    const isLogin = req.session ? req.session.login : false;
+  home(req: Request, res: Response): void {
+    const isLogin: boolean = req.session ? req.session.login : false;
     if (isLogin) {
       res.send(`    
       <html>
@@ -41,7 +41,7 @@ class LoginController {
   }
 
   @get('/logout')
-  logout(req: Request, res: Response) {
+  logout(req: Request, res: Response): void {
     if (req.session) {
       req.session.login = undefined;
     }
@@ -49,9 +49,9 @@ class LoginController {
   }
 
   @post('/login')
-  login(req: RequestWithBody, res: Response) {
+  login(req: RequestWithBody, res: Response): void {
     const { password, username } = req.body;
-    const isLogin = req.session ? req.session.login : false;
+    const isLogin: boolean = req.session ? req.session.login : false;
     if (isLogin) {
       res.json(getResponseData(false, 'repeat login'));
     } else {

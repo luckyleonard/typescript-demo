@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import 'reflect-metadata';
 import { Request, Response, NextFunction } from 'express';
-import { controller, get, use } from './decorator';
+import { controller, get, use } from '../decorator';
 import { getResponseData } from '../utils/util';
 import Crowller from '../utils/crowller';
 import NewsAnalyzer from '../utils/newsAnalyzer';
@@ -17,20 +17,20 @@ const checkLogin = (
   req: RequestWithBody,
   res: Response,
   next: NextFunction
-) => {
-  const isLogin = req.session ? req.session.login : false;
+): void => {
+  const isLogin: boolean = req.session ? req.session.login : false;
   if (isLogin) {
     next();
   } else {
-    res.json(getResponseData(null, `please login <a href='/'>login</a>`));
+    res.json(getResponseData(null, `please login`));
   }
 };
 
-@controller
+@controller('/')
 class CrowllerController {
   @get('/getData')
   @use(checkLogin)
-  getData(req: RequestWithBody, res: Response) {
+  getData(req: RequestWithBody, res: Response): void {
     const url = `https://news.ycombinator.com/`;
     const analyzer = NewsAnalyzer.getInstance();
     new Crowller(url, analyzer);
@@ -38,7 +38,7 @@ class CrowllerController {
   }
 
   @get('/showData')
-  showData(req: RequestWithBody, res: Response) {
+  showData(req: RequestWithBody, res: Response): void {
     try {
       const filePath = path.resolve(__dirname, '../../data/news.json');
       const result = fs.readFileSync(filePath, 'utf-8');
