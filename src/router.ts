@@ -1,15 +1,17 @@
-import fs from 'fs';
-import path from 'path';
-import { Router, Request, Response, NextFunction } from 'express';
-import Crowller from './utils/crowller';
-import NewsAnalyzer from './utils/newsAnalyzer';
-import { getResponseData } from './utils/util';
+import { Router } from 'express';
+export default Router();
 
-interface RequestWithBody extends Request {
-  body: {
-    [key: string]: string | undefined; //泛匹配,body下属性都是string | undefined
-  };
-}
+// import fs from 'fs';
+// import path from 'path';
+// import Crowller from './utils/crowller';
+// import NewsAnalyzer from './utils/newsAnalyzer';
+// import { getResponseData } from './utils/util';
+
+// interface RequestWithBody extends Request {
+//   body: {
+//     [key: string]: string | undefined; //泛匹配,body下属性都是string | undefined
+//   };
+// }
 
 // const checkLogin = (
 //   req: RequestWithBody,
@@ -23,8 +25,6 @@ interface RequestWithBody extends Request {
 //     res.json(getResponseData(null, `please login <a href='/'>login</a>`));
 //   }
 // };
-
-const router = Router();
 
 // router.get('/', () => {});
 
@@ -66,5 +66,3 @@ const router = Router();
 //     res.json(getResponseData(false, 'get data first'));
 //   }
 // });
-
-export default router;
