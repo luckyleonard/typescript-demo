@@ -1,5 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
-import router from './router';
+import './controller/LoginController'; //引入类，执行装饰器
+import './controller/CrowllerController';
+import { router } from './controller/decorator';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
 const app = express();
