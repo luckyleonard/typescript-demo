@@ -17,16 +17,16 @@ export function controller(root: string) {
       const handler = target.prototype[key];
       //就在这个handler上写装饰器，所以一定存在
       //取得类中的函数或属性名
-      const middleware: RequestHandler = Reflect.getMetadata(
-        'middleware',
+      const middlewares: RequestHandler[] = Reflect.getMetadata(
+        'middlewares',
         target.prototype,
         key
-      );
+      ); //middlewares现在是数组
       if (path && method) {
         const fullPath = root === '/' ? path : `${root}${path}`;
-        if (middleware) {
-          router[method](fullPath, middleware, handler);
-          //加入middleware
+        if (middlewares) {
+          router[method](fullPath, ...middlewares, handler);
+          //加入middlewares 展开数组
         } else {
           router[method](fullPath, handler);
           //router不能接受一个any类型的参数 所以需要指定一个enum类声明method
