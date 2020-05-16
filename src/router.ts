@@ -1,57 +1,44 @@
-import { Router, Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
-import Crowller from './crowller';
-import NewsAnalyzer from './newsAnalyzer';
+import { Router, Request, Response, NextFunction } from 'express';
+import Crowller from './utils/crowller';
+import NewsAnalyzer from './utils/newsAnalyzer';
+import { getResponseData } from './utils/util';
 
 interface RequestWithBody extends Request {
   body: {
-    [key: string]: string | undefined;
-    //泛匹配
+    [key: string]: string | undefined; //泛匹配,body下属性都是string | undefined
   };
 }
 
-const router = Router();
-
-router.get('/', (req: Request, res: Response) => {
+const checkLogin = (
+  req: RequestWithBody,
+  res: Response,
+  next: NextFunction
+) => {
   const isLogin = req.session ? req.session.login : false;
   if (isLogin) {
-    res.send(`    
-    <html>
-      <body>
-        <a href='/getData'>get data</a>
-        <a href='/showData'>show data</a>
-        <a href='/logout'>logout</a>
-      </body>
-    </html>`);
+    next();
   } else {
-    res.send(`
-    <html>
-      <body>
-        <form method="post" action = "/login">
-          username:
-          <input type="text" name="username"/>
-          password:
-          <input type="password" name="password"/>
-          <button>login</button>
-        </form>
-      </body>
-    </html>
-  `);
+    res.json(getResponseData(null, `please login <a href='/'>login</a>`));
   }
-});
+};
+
+const router = Router();
+
+router.get('/', () => {});
 
 router.post('/login', (req: RequestWithBody, res: Response) => {
   const { password, username } = req.body;
   const isLogin = req.session ? req.session.login : false;
   if (isLogin) {
-    res.send('you still login');
+    res.json(getResponseData(false, 'repeat login'));
   } else {
     if (password === '123' && req.session) {
       req.session.login = true;
-      res.send('login success');
+      res.json(getResponseData(true));
     } else {
-      res.send('login fail');
+      res.json(getResponseData(false, 'wrong password'));
     }
   }
 });
@@ -60,33 +47,23 @@ router.get('/logout', (req: Request, res: Response) => {
   if (req.session) {
     req.session.login = undefined;
   }
-  res.redirect('/');
+  res.json(getResponseData(true));
 });
 
-router.get('/getData', (req: RequestWithBody, res: Response) => {
-  const isLogin = req.session ? req.session.login : false;
-  if (isLogin) {
-    const url = `https://news.ycombinator.com/`;
-    const analyzer = NewsAnalyzer.getInstance();
-    new Crowller(url, analyzer);
-    res.send('get data Success!');
-  } else {
-    res.send(`please login <a href='/'>login</a>`);
-  }
+router.get('/getData', checkLogin, (req: RequestWithBody, res: Response) => {
+  const url = `https://news.ycombinator.com/`;
+  const analyzer = NewsAnalyzer.getInstance();
+  new Crowller(url, analyzer);
+  res.json(getResponseData(true));
 });
 
-router.get('/showData', (req: RequestWithBody, res: Response) => {
-  const isLogin = req.session ? req.session.login : false;
-  if (isLogin) {
-    try {
-      const filePath = path.resolve(__dirname, '../data/news.json');
-      const result = fs.readFileSync(filePath, 'utf-8');
-      res.json(JSON.parse(result));
-    } catch (e) {
-      res.send(`get data first <a href='/getData'>get data</a>`);
-    }
-  } else {
-    res.send(`please login <a href='/'>login</a>`);
+router.get('/showData', checkLogin, (req: RequestWithBody, res: Response) => {
+  try {
+    const filePath = path.resolve(__dirname, '../data/news.json');
+    const result = fs.readFileSync(filePath, 'utf-8');
+    res.json(getResponseData(JSON.parse(result)));
+  } catch (e) {
+    res.json(getResponseData(false, 'get data first'));
   }
 });
 
