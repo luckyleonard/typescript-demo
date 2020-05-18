@@ -13,6 +13,15 @@ interface RequestWithBody extends Request {
   };
 }
 
+interface NewsItem {
+  title: string;
+  points: number;
+}
+
+interface DataStructure {
+  [key: string]: NewsItem[];
+}
+
 const checkLogin = (
   req: RequestWithBody,
   res: Response,
@@ -26,15 +35,15 @@ const checkLogin = (
   }
 };
 
-@controller('/')
-class CrowllerController {
+@controller('/api')
+export class CrowllerController {
   @get('/getData')
   @use(checkLogin)
   getData(req: RequestWithBody, res: Response): void {
     const url = `https://news.ycombinator.com/`;
     const analyzer = NewsAnalyzer.getInstance();
     new Crowller(url, analyzer);
-    res.json(getResponseData(true));
+    res.json(getResponseData<boolean>(true));
   }
 
   @get('/showData')
@@ -42,9 +51,9 @@ class CrowllerController {
     try {
       const filePath = path.resolve(__dirname, '../../data/news.json');
       const result = fs.readFileSync(filePath, 'utf-8');
-      res.json(getResponseData(JSON.parse(result)));
+      res.json(getResponseData<DataStructure>(JSON.parse(result)));
     } catch (e) {
-      res.json(getResponseData(false, 'get data first'));
+      res.json(getResponseData<boolean>(false, 'get data first'));
     }
   }
 }
