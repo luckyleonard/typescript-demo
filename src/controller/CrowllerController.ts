@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 import { controller, get, use } from '../decorator';
 import { getResponseData } from '../utils/util';
 import Crowller from '../utils/crowller';
-import NewsAnalyzer from '../utils/newsAnalyzer';
+import CaseAnalyzer from '../utils/caseAnalyzer';
 
 interface RequestWithBody extends Request {
   body: {
@@ -13,13 +13,13 @@ interface RequestWithBody extends Request {
   };
 }
 
-interface NewsItem {
+interface CasesItem {
   title: string;
-  points: number;
+  count: number;
 }
 
 interface DataStructure {
-  [key: string]: NewsItem[];
+  [key: string]: CasesItem[];
 }
 
 const checkLogin = (
@@ -40,8 +40,8 @@ export class CrowllerController {
   @get('/getData')
   @use(checkLogin)
   getData(req: RequestWithBody, res: Response): void {
-    const url = `https://news.ycombinator.com/`;
-    const analyzer = NewsAnalyzer.getInstance();
+    const url = `https://www.worldometers.info/coronavirus/`;
+    const analyzer = CaseAnalyzer.getInstance();
     new Crowller(url, analyzer);
     res.json(getResponseData<boolean>(true));
   }
@@ -49,7 +49,7 @@ export class CrowllerController {
   @get('/showData')
   showData(req: RequestWithBody, res: Response): void {
     try {
-      const filePath = path.resolve(__dirname, '../../data/news.json');
+      const filePath = path.resolve(__dirname, '../../data/cases.json');
       const result = fs.readFileSync(filePath, 'utf-8');
       res.json(getResponseData<DataStructure>(JSON.parse(result)));
     } catch (e) {
