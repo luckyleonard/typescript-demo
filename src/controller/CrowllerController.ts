@@ -13,15 +13,6 @@ interface RequestWithBody extends Request {
   };
 }
 
-interface CasesItem {
-  title: string;
-  count: number;
-}
-
-interface DataStructure {
-  [key: string]: CasesItem[];
-}
-
 const checkLogin = (
   req: RequestWithBody,
   res: Response,
@@ -43,7 +34,7 @@ export class CrowllerController {
     const url = `https://www.worldometers.info/coronavirus/`;
     const analyzer = CaseAnalyzer.getInstance();
     new Crowller(url, analyzer);
-    res.json(getResponseData<boolean>(true));
+    res.json(getResponseData<responseResult.getData>(true));
   }
 
   @get('/showData')
@@ -51,9 +42,11 @@ export class CrowllerController {
     try {
       const filePath = path.resolve(__dirname, '../../data/cases.json');
       const result = fs.readFileSync(filePath, 'utf-8');
-      res.json(getResponseData<DataStructure>(JSON.parse(result)));
+      res.json(getResponseData<responseResult.showData>(JSON.parse(result)));
     } catch (e) {
-      res.json(getResponseData<boolean>(false, 'get data first'));
+      res.json(
+        getResponseData<responseResult.showData>(false, 'get data first')
+      );
     }
   }
 }
