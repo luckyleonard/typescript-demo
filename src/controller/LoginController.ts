@@ -9,34 +9,32 @@ interface RequestWithBody extends Request {
   };
 }
 
-@controller('/')
-class LoginController {
-  @get('/')
-  home(req: Request, res: Response): void {
+@controller('/api')
+export class LoginController {
+  static isLogin(req: RequestWithBody): boolean {
+    return req.session ? req.session.login : false;
+  }
+
+  @get('/isLogin')
+  isLogin(req: RequestWithBody, res: Response): void {
+    const isLogin = LoginController.isLogin(req);
+    const result = getResponseData<boolean>(isLogin);
+    res.json(result);
+  }
+
+  @post('/login')
+  login(req: RequestWithBody, res: Response): void {
+    const { password, username } = req.body;
     const isLogin: boolean = req.session ? req.session.login : false;
     if (isLogin) {
-      res.send(`    
-      <html>
-        <body>
-          <a href='/getData'>get data</a>
-          <a href='/showData'>show data</a>
-          <a href='/logout'>logout</a>
-        </body>
-      </html>`);
+      res.json(getResponseData(true));
     } else {
-      res.send(`
-      <html>
-        <body>
-          <form method="post" action = "/login">
-            username:
-            <input type="text" name="username"/>
-            password:
-            <input type="password" name="password"/>
-            <button>login</button>
-          </form>
-        </body>
-      </html>
-    `);
+      if (password === '123' && req.session) {
+        req.session.login = true;
+        res.json(getResponseData(true));
+      } else {
+        res.json(getResponseData(false, 'wrong password'));
+      }
     }
   }
 
@@ -46,21 +44,5 @@ class LoginController {
       req.session.login = undefined;
     }
     res.json(getResponseData(true));
-  }
-
-  @post('/login')
-  login(req: RequestWithBody, res: Response): void {
-    const { password, username } = req.body;
-    const isLogin: boolean = req.session ? req.session.login : false;
-    if (isLogin) {
-      res.json(getResponseData(false, 'repeat login'));
-    } else {
-      if (password === '123' && req.session) {
-        req.session.login = true;
-        res.json(getResponseData(true));
-      } else {
-        res.json(getResponseData(false, 'wrong password'));
-      }
-    }
   }
 }
